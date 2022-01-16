@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./node_modules/metro4/build/css/metro-all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet"
+  <link href="./style.css" rel="stylesheet" />
+  <title>Google Authenticator</title>
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="cell-sm-12 d-flex flex-justify-center">
+        <h1>Google Authenticator</h1>
+      </div>
+      <div class="cell-sm-12 d-flex flex-justify-center">
+        <button class="button primary shadowed" id="btn-new-qrcode">
+          <span class="mif-qrcode mr-1"></span>
+          <span class="ml-1">Generate new QRCode</span>
+        </button>
+      </div>
+      <div class="cell-sm-12 d-flex flex-justify-center">
+        <img id="qrCode" alt="qrcode" class="shadowed" />
+      </div>
+      <div class="cell-sm-12 d-flex flex-justify-center">
+        <div class="cell-sm-4">
+          <input
+            type="number"
+            id="code"
+            placeholder="Google Authenticator Code"
+            data-role="materialinput"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="./node_modules/metro4/build/js/metro.min.js"></script>
+  <script src="./index.js"></script>
+</body>
+</html>
