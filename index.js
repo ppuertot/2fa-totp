@@ -10,8 +10,9 @@
   };
   !qrCode && !secretItem ? generateNewQrCode() : document.getElementById('qrCode').src = qrCode;
   const generateNewQrCode = async () => {
+    const { BASEURL, AUTH } = API;
     try {
-      const { qrcode, secret } = await (await fetch(`${API.BASEURL}${API.AUTH}`)).json();
+      const { qrcode, secret } = await (await fetch(`${BASEURL}${AUTH}`)).json();
       document.querySelector('#qrCode').src = qrcode;
       window.localStorage.setItem('qrCode', qrcode);
       window.localStorage.setItem('secret', secret);
@@ -21,8 +22,9 @@
   };
   const sendCode = async (evt) => {
     if (evt.keyCode === 13) {
+      const { BASEURL, VERIFY } = API;
       try {
-        const { isValid } = await (await fetch(`${API.BASEURL}${API.VERIFY}?token=${inputToken.value}&secret=${secretItem}`)).json();
+        const { isValid } = await (await fetch(`${BASEURL}${VERIFY}?token=${inputToken.value}&secret=${secretItem}`)).json();
         toats({ type: isValid ? 'success' : 'alert', msn:  `The code is ${isValid ? 'valid' : 'not valid'}` });
         inputToken.value = '';
       } catch (err) {
@@ -33,7 +35,7 @@
   const toats = ({ type, msn }) => {
     Metro.toast.create(msn, null, 1000, type);
   }
-  btnNewQrCode.addEventListener('click', generateNewQrCode());
+  btnNewQrCode.addEventListener('click', generateNewQrCode);
   inputToken.addEventListener('keydown', async (evt) => sendCode(evt));
   
 })();
