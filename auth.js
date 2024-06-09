@@ -2,18 +2,20 @@ const Express = require('express');
 const BodyParser = require('body-parser');
 const speakeasy = require('speakeasy');
 const qrcode = require('qrcode');
+const path = require('path')
 
 const app = Express();
 
 app.use(BodyParser.json());
 app.use(BodyParser.urlencoded({ extended: true }));
+app.use(Express.static(path.join(__dirname)))
 
 let secret;
 
 app.get('/auth-totp-mfa', (req, res, next) => {
   secret = speakeasy.generateSecret({
     length: 20,
-    name: 'https://tecnops.es',
+    // name: 'https://tecnops.es',
   });
   
   qrcode.toDataURL(secret.otpauth_url, (err, data_url) => {

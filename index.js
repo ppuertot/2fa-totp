@@ -8,7 +8,6 @@
     AUTH: '/auth-totp-mfa',
     VERIFY: '/auth-totp-mfa-verify',
   };
-  !qrCode && !secretItem ? generateNewQrCode() : document.getElementById('qrCode').src = qrCode;
   const generateNewQrCode = async () => {
     const { BASEURL, AUTH } = API;
     try {
@@ -37,5 +36,5 @@
   }
   btnNewQrCode.addEventListener('click', generateNewQrCode);
   inputToken.addEventListener('keydown', async (evt) => sendCode(evt));
-  
+  !qrCode && !secretItem ? generateNewQrCode() : document.getElementById('qrCode').src = qrCode;
 })();
